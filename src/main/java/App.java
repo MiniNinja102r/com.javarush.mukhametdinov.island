@@ -11,13 +11,12 @@ import util.AnimalFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class App {
 
     public static void main(String[] args) {
         Config.loadAll();
-
-//        Scheduler.startScheduleTask();
 
         final Location[] locations = new Location[IslandConfig.Island.MAX_LOCATIONS_ON_ISLAND];
         int it = 0;
@@ -31,12 +30,13 @@ public class App {
         System.out.println(Arrays.toString(locations));
 
         Island.initialize(locations);
+        Scheduler.startScheduleTask();
 
-        Animal animal = AnimalFactory.createAnimal(AnimalType.WOLF);
-        System.out.println(animal);
+        for (int i = 0; i < 12; i++) {
+            AnimalFactory.createAnimal(AnimalType.WOLF);
+            AnimalFactory.createAnimal(AnimalType.HORSE);
+        }
 
-        Wolf wolf = (Wolf) animal;
-        System.out.println(wolf);
-
+        System.out.println(Arrays.toString(locations));
     }
 }

@@ -2,6 +2,7 @@ package entity;
 
 import entity.island.Location;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +13,12 @@ import lombok.experimental.FieldDefaults;
 public abstract class Animal implements Eatable {
 
     final double weight;
+
+    @ToString.Exclude
     final Location location;
+
+    @Getter
+    final AnimalType type;
 
     void eat(Eatable e) {}
 

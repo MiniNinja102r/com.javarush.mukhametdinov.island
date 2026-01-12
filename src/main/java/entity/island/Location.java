@@ -1,10 +1,12 @@
 package entity.island;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import entity.Animal;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -14,4 +16,13 @@ public final class Location {
 
     final int x;
     final int y;
+    final Map<Animal, Integer> animals = new HashMap<>();
+
+    public Map<Animal, Integer> getAnimals() {
+        return Collections.unmodifiableMap(animals);
+    }
+
+    public void addAnimal(Animal animal) {
+        this.animals.compute(animal, (k, v) -> (v == null) ? 0 : v + 1);
+    }
 }

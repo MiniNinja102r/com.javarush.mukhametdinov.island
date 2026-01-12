@@ -1,6 +1,7 @@
 package entity.island;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -12,6 +13,7 @@ import java.util.Random;
 @ToString
 public final class Island {
 
+    @Getter
     final Location[] locations;
 
     private static Island instance;
