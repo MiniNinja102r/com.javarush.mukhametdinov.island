@@ -5,8 +5,17 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum ConfigType {
-    SETTINGS("settings.yml");
+    ISLAND("island.yml");
 
     @Getter
     private final String fileName;
+
+    private static final String YML_FORMAT = ".yml";
+
+    public String getRawFileName() {
+        String raw = this.getFileName();
+        if (raw.contains(YML_FORMAT))
+            return raw.substring(0, raw.length() - YML_FORMAT.length());
+        return raw;
+    }
 }
