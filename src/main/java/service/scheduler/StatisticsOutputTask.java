@@ -21,10 +21,12 @@ public final class StatisticsOutputTask implements Runnable {
         for (Location location : locations) {
             final Map<Animal, Integer> animals = location.getAnimals();
             for (AnimalType type : AnimalType.values()) {
+                int count = 0;
                 for (var entry : animals.entrySet()) {
                     if (entry.getKey().getType() == type)
-                        System.out.printf("%s: %d, ", type.getTitle(), entry.getValue());
+                        count += entry.getValue();
                 }
+                System.out.printf("%s: %d, ", type.getTitle(), count);
             }
         }
         System.out.printf("%n");

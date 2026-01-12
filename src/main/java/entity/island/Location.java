@@ -23,6 +23,6 @@ public final class Location {
     }
 
     public void addAnimal(Animal animal) {
-        this.animals.compute(animal, (k, v) -> (v == null) ? 0 : v + 1);
+        this.animals.merge(animal, 1, Integer::sum);
     }
 }
