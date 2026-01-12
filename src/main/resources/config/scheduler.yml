@@ -1,0 +1,2 @@
+scheduler:
+  core_pool_size: 2

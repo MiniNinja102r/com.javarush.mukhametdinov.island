@@ -5,7 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum ConfigType {
-    ISLAND("island.yml");
+    ISLAND("island.yml"),
+    SCHEDULER("scheduler.yml");
 
     @Getter
     private final String fileName;

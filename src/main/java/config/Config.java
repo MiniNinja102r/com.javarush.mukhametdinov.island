@@ -1,6 +1,7 @@
 package config;
 
 import config.list.IslandConfig;
+import config.list.SchedulerConfig;
 
 import java.io.InputStream;
 import java.util.List;
@@ -10,7 +11,8 @@ public class Config {
     private static final String CONFIG_PATH = "/config/";
 
     private static final List<Configurable> CONFIGS = List.of(
-            new IslandConfig()
+            new IslandConfig(),
+            new SchedulerConfig()
     );
 
     protected InputStream getInputStream(ConfigType type) {
