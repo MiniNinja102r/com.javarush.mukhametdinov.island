@@ -1,10 +1,11 @@
 package entity.herbivore;
 
 import entity.Animal;
+import entity.island.Location;
 
 public class Herbivore extends Animal {
 
-    protected Herbivore(double weight) {
-        super(weight);
+    public Herbivore(double weight, Location location) {
+        super(weight, location);
     }
 }

@@ -1,9 +1,13 @@
 import config.Config;
 import config.list.IslandConfig;
 import config.list.SchedulerConfig;
+import entity.Animal;
+import entity.AnimalType;
 import entity.island.Island;
 import entity.island.Location;
+import entity.predator.Wolf;
 import service.scheduler.Scheduler;
+import util.AnimalFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,5 +29,14 @@ public class App {
             }
         }
         System.out.println(Arrays.toString(locations));
+
+        Island.initialize(locations);
+
+        Animal animal = AnimalFactory.createAnimal(AnimalType.WOLF);
+        System.out.println(animal);
+
+        Wolf wolf = (Wolf) animal;
+        System.out.println(wolf);
+
     }
 }

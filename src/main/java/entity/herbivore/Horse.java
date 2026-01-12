@@ -1,8 +1,10 @@
 package entity.herbivore;
 
+import entity.island.Location;
+
 public final class Horse extends Herbivore {
 
-    public Horse() {
-        super(999);
+    public Horse(Location location) {
+        super(999, location);
     }
 }
