@@ -2,6 +2,7 @@ package config.list;
 
 import config.Config;
 import config.ConfigType;
+import config.Configs;
 import config.Configurable;
 import lombok.experimental.UtilityClass;
 import lombok.extern.java.Log;
@@ -37,8 +38,8 @@ public final class IslandConfig extends Config implements Configurable {
         if (config == null)
             log.severe(cType.getRawFileName() + " section not found in config.");
         else {
-            Island.X_SIZE = (Integer) config.get("x_size");
-            Island.Y_SIZE = (Integer) config.get("y_size");
+            Island.X_SIZE = Configs.getInteger(config, "x_size", 1);
+            Island.Y_SIZE = Configs.getInteger(config, "y_size", 1);
         }
     }
 

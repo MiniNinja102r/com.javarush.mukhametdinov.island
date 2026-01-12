@@ -1,14 +1,20 @@
 package service.scheduler;
 
 import config.list.SchedulerConfig;
+import lombok.experimental.UtilityClass;
 
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
+@UtilityClass
 public final class Scheduler {
 
     public static void startScheduleTask() {
         var executorService = Executors.newScheduledThreadPool(SchedulerConfig.Scheduler.CORE_POOL_SIZE);
-        executorService.scheduleWithFixedDelay(new StatisticsOutputTask(), 1, 1, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(
+                new StatisticsOutputTask(),
+                SchedulerConfig.Scheduler.INITIAL_DELAY,
+                SchedulerConfig.Scheduler.DELAY,
+                SchedulerConfig.Scheduler.TIMEUNIT
+        );
     }
 }

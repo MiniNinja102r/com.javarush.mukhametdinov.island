@@ -2,6 +2,7 @@ package config.list;
 
 import config.Config;
 import config.ConfigType;
+import config.Configs;
 import config.Configurable;
 import lombok.experimental.UtilityClass;
 import lombok.extern.java.Log;
@@ -10,6 +11,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Log
 @SuppressWarnings("unchecked")
@@ -37,12 +39,18 @@ public final class SchedulerConfig extends Config implements Configurable {
         if (config == null)
             log.severe(cType.getRawFileName() + " section not found in config.");
         else {
-            SchedulerConfig.Scheduler.CORE_POOL_SIZE = (Integer) config.get("core_pool_size");
+            SchedulerConfig.Scheduler.CORE_POOL_SIZE = Configs.getInteger(config, "core_pool_size", 2);
+            SchedulerConfig.Scheduler.DELAY = Configs.getLong(config, "delay", 5);
+            SchedulerConfig.Scheduler.INITIAL_DELAY = Configs.getLong(config, "initial_delay", 2);
+            SchedulerConfig.Scheduler.TIMEUNIT = Configs.getTimeUnit(config, "timeunit", TimeUnit.SECONDS);
         }
     }
 
     @UtilityClass
     public static class Scheduler {
         public static Integer CORE_POOL_SIZE;
+        public static Long DELAY;
+        public static Long INITIAL_DELAY;
+        public static TimeUnit TIMEUNIT;
     }
 }
