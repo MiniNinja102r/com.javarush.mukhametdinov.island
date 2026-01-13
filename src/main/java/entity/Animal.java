@@ -48,5 +48,5 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
     public void die(DeadReason reason) {
     }
 
-    void eat(Eatable e) {}
+    public abstract void eat(Eatable e);
 }
