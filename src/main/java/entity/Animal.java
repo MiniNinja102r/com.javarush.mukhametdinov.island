@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 public abstract class Animal implements Eatable {
 
+    @ToString.Exclude
     final double weight;
 
     @ToString.Exclude
