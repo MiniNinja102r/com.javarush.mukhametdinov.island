@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public enum AnimalType {
+public enum CreatureType {
     WOLF("\uD83D\uDC3A"),
     BOA_CONSTRICTOR("\uD83D\uDC0D"),
     FOX("\uD83E\uDD8A"),
@@ -23,7 +23,9 @@ public enum AnimalType {
     BOAR("🐗"),
     BUFFALO("🐃"),
     DUCK("🦆"),
-    CATERPILLAR("🐛");
+    CATERPILLAR("🐛"),
+
+    PLANT("\uD83C\uDF3F");
 
     @Getter
     final String emoji;

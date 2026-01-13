@@ -1,7 +1,8 @@
 package repository;
 
-import entity.Animal;
-import entity.AnimalType;
+import entity.Creature;
+import entity.CreatureType;
+import entity.Plant;
 import entity.herbivore.*;
 import entity.island.Island;
 import entity.island.Location;
@@ -9,20 +10,20 @@ import entity.predator.*;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public final class AnimalFactory {
+public final class CreatureFactory {
 
     private static final Island island = Island.getInstance();
 
-    public static Animal createAnimal(AnimalType aType) {
+    public static Creature createCreature(CreatureType type) {
         final Location loc = island.getRandomLocation();
-        final Animal animal = getAnimal(aType, loc);
-        loc.addAnimal(animal);
+        final Creature creature = getCreature(type, loc);
+        loc.addCreature(creature);
 
-        return animal;
+        return creature;
     }
 
-    private static Animal getAnimal(AnimalType aType, Location loc) {
-        return switch (aType) {
+    private static Creature getCreature(CreatureType type, Location loc) {
+        return switch (type) {
             case WOLF -> new Wolf(loc);
             case BOA_CONSTRICTOR -> new BoaConstrictor(loc);
             case FOX -> new Fox(loc);
@@ -39,6 +40,8 @@ public final class AnimalFactory {
             case BUFFALO -> new Buffalo(loc);
             case DUCK -> new Duck(loc);
             case CATERPILLAR -> new Caterpillar(loc);
+
+            case PLANT -> new Plant(loc);
         };
     }
 }

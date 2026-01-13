@@ -1,11 +1,11 @@
 package entity.predator;
 
-import entity.AnimalType;
+import entity.CreatureType;
 import entity.island.Location;
 
 public final class Fox extends Predator {
 
     public Fox(Location location) {
-        super(999, location, AnimalType.FOX);
+        super(999, location, CreatureType.FOX);
     }
 }

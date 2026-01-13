@@ -1,6 +1,6 @@
 package entity.island;
 
-import entity.Animal;
+import entity.Creature;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -16,13 +16,13 @@ public final class Location {
 
     final int x;
     final int y;
-    final Map<Animal, Integer> animals = new HashMap<>();
+    final Map<Creature, Integer> creatures = new HashMap<>();
 
-    public Map<Animal, Integer> getAnimals() {
-        return Collections.unmodifiableMap(animals);
+    public Map<Creature, Integer> getCreatures() {
+        return Collections.unmodifiableMap(creatures);
     }
 
-    public void addAnimal(Animal animal) {
-        this.animals.merge(animal, 1, Integer::sum);
+    public void addCreature(Creature creature) {
+        this.creatures.merge(creature, 1, Integer::sum);
     }
 }

@@ -19,7 +19,7 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
     final Location location;
 
     @Getter
-    final AnimalType type;
+    final CreatureType type;
 
     @Override
     public double weight() {
@@ -33,6 +33,11 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void reproduce() {
+    }
+
+    @Override
+    public CreatureType type() {
+        return type;
     }
 
     @Override

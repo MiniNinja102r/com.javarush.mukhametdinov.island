@@ -7,4 +7,6 @@ public interface Creature extends Eatable, CanDie {
     double weight();
 
     Location location();
+
+    CreatureType type();
 }

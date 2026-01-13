@@ -9,13 +9,11 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class Plant implements Creature {
 
-    final double weight;
-
     final Location location;
 
     @Override
     public double weight() {
-        return weight;
+        return 1; // ВЗЯТЬ ИЗ КОНФИГА
     }
 
     @Override
@@ -25,5 +23,10 @@ public final class Plant implements Creature {
 
     @Override
     public void die(DeadReason reason) {
+    }
+
+    @Override
+    public CreatureType type() {
+        return CreatureType.PLANT;
     }
 }

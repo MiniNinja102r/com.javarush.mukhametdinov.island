@@ -1,11 +1,11 @@
 package entity.herbivore;
 
-import entity.AnimalType;
+import entity.CreatureType;
 import entity.island.Location;
 
 public final class Rabbit extends Herbivore {
 
     public Rabbit(Location location) {
-        super(999, location, AnimalType.RABBIT);
+        super(999, location, CreatureType.RABBIT);
     }
 }
