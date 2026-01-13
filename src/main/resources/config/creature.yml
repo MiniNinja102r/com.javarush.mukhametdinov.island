@@ -1,0 +1,83 @@
+creature:
+  herbivore:
+    horse:
+      weight: 400
+      max_on_location: 20
+      speed: 4
+      saturation: 60
+    deer:
+      weight: 300
+      max_on_location: 20
+      speed: 4
+      saturation: 50
+    rabbit:
+      weight: 2
+      max_on_location: 150
+      speed: 2
+      saturation: 0.45
+    mouse:
+      weight: 0.05
+      max_on_location: 500
+      speed: 1
+      saturation: 0.01
+    goat:
+      weight: 60
+      max_on_location: 140
+      speed: 3
+      saturation: 10
+    sheep:
+      weight: 70
+      max_on_location: 140
+      speed: 3
+      saturation: 15
+    boar:
+      weight: 400
+      max_on_location: 50
+      speed: 2
+      saturation: 50
+    buffalo:
+      weight: 700
+      max_on_location: 10
+      speed: 3
+      saturation: 100
+    duck:
+      weight: 1
+      max_on_location: 200
+      speed: 4
+      saturation: 0.15
+    caterpillar:
+      weight: 0.01
+      max_on_location: 1000
+      speed: 0
+      saturation: 0
+  plant:
+    weight: 1
+    max_on_location: 200
+    speed: 0
+    saturation: 0
+  predator:
+    wolf:
+      weight: 50
+      max_on_location: 30
+      speed: 3
+      saturation: 8
+    boa_constrictor:
+      weight: 15
+      max_on_location: 30
+      speed: 1
+      saturation: 3
+    fox:
+      weight: 8
+      max_on_location: 30
+      speed: 2
+      saturation: 2
+    bear:
+      weight: 500
+      max_on_location: 5
+      speed: 2
+      saturation: 80
+    eagle:
+      weight: 6
+      max_on_location: 20
+      speed: 3
+      saturation: 1

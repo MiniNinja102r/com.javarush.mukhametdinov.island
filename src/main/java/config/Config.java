@@ -1,5 +1,6 @@
 package config;
 
+import config.list.CreatureConfig;
 import config.list.IslandConfig;
 import config.list.SchedulerConfig;
 
@@ -12,7 +13,8 @@ public class Config {
 
     private static final List<Configurable> CONFIGS = List.of(
             new IslandConfig(),
-            new SchedulerConfig()
+            new SchedulerConfig(),
+            new CreatureConfig()
     );
 
     protected InputStream getInputStream(ConfigType type) {
