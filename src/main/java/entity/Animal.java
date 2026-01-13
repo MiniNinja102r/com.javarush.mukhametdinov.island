@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
-public abstract class Animal implements Eatable {
+public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @ToString.Exclude
     final double weight;
@@ -21,11 +21,27 @@ public abstract class Animal implements Eatable {
     @Getter
     final AnimalType type;
 
+    @Override
+    public double weight() {
+        return weight;
+    }
+
+    @Override
+    public Location location() {
+        return location;
+    }
+
+    @Override
+    public void reproduce() {
+    }
+
+    @Override
+    public void move(Location location) {
+    }
+
+    @Override
+    public void die(DeadReason reason) {
+    }
+
     void eat(Eatable e) {}
-
-    void move(Location loc) {}
-
-    void multiple() {}
-
-    void die() {}
 }
