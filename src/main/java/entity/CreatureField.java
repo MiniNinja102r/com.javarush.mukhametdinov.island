@@ -12,6 +12,7 @@ public enum CreatureField {
     MAX_ON_LOCATION("max_on_location"),
     SPEED("speed"),
     SATURATION("saturation"),
+    INITIAL_COUNT("initial_count"),
 
     KILL_WOLF_CHANCE("kill_wolf_chance"),
     KILL_BOA_CONSTRICTOR_CHANCE("kill_boa_constrictor_chance"),

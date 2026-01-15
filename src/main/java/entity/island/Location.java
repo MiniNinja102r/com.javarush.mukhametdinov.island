@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -17,6 +18,9 @@ public final class Location {
     final int x;
     final int y;
     final Map<Creature, Integer> creatures = new HashMap<>();
+
+    @Getter
+    final ReentrantLock lock = new ReentrantLock();
 
     public Map<Creature, Integer> getCreatures() {
         return Collections.unmodifiableMap(creatures);
