@@ -1,7 +1,7 @@
 package service.scheduler;
 
-import entity.Animal;
-import entity.AnimalType;
+import entity.Creature;
+import entity.CreatureType;
 import entity.island.Island;
 import entity.island.Location;
 
@@ -19,14 +19,14 @@ public final class StatisticsOutputTask implements Runnable {
     private void broadcastPopulation() {
         final Location[] locations = island.getLocations();
         for (Location location : locations) {
-            final Map<Animal, Integer> animals = location.getAnimals();
-            for (AnimalType type : AnimalType.values()) {
+            final Map<Creature, Integer> creatures = location.getCreatures();
+            for (CreatureType type : CreatureType.values()) {
                 int count = 0;
-                for (var entry : animals.entrySet()) {
-                    if (entry.getKey().getType() == type)
+                for (var entry : creatures.entrySet()) {
+                    if (entry.getKey().type() == type)
                         count += entry.getValue();
                 }
-                System.out.printf("%s: %d, ", type.getTitle(), count);
+                System.out.printf("%s: %d, ", type.getEmoji(), count);
             }
         }
         System.out.printf("%n");

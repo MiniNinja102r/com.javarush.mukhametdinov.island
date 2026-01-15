@@ -4,15 +4,15 @@ import config.Config;
 import config.ConfigType;
 import config.Configs;
 import config.Configurable;
+import exception.ConfigNotFoundException;
+import exception.ConfigReadingException;
 import lombok.experimental.UtilityClass;
-import lombok.extern.java.Log;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-@Log
 @SuppressWarnings("unchecked")
 public final class IslandConfig extends Config implements Configurable {
 
@@ -22,21 +22,20 @@ public final class IslandConfig extends Config implements Configurable {
     public void load(ConfigType cType) {
         try (InputStream input = super.getInputStream(cType)) {
             if (input == null) {
-                log.severe("Config file " + cType + " not found.");
-                return;
+                throw new ConfigNotFoundException("Config file " + cType + " not found.");
             }
             final Yaml yaml = new Yaml();
             data = yaml.load(input);
             loadConfig(cType);
         } catch (IOException e) {
-            log.severe("Error reading configuration: " + e);
+            throw new ConfigReadingException(e.getMessage());
         }
     }
 
     private static void loadConfig(ConfigType cType) {
         final Map<String, Object> config = (Map<String, Object>) data.get(cType.getRawFileName());
         if (config == null)
-            log.severe(cType.getRawFileName() + " section not found in config.");
+            throw new ConfigReadingException(cType.getRawFileName() + " section not found in config.");
         else {
             Island.X_SIZE = Configs.getInteger(config, "x_size", 1);
             Island.Y_SIZE = Configs.getInteger(config, "y_size", 1);
