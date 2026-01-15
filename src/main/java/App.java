@@ -1,7 +1,8 @@
 import config.Config;
+import config.list.CreatureConfig;
 import config.list.IslandConfig;
-import entity.Animal;
 import entity.Creature;
+import entity.CreatureField;
 import entity.CreatureType;
 import entity.island.Island;
 import entity.island.Location;
@@ -41,13 +42,16 @@ public class App {
                 System.out.printf("%s:%d, %n", entry.getKey(), entry.getValue());
             }
         }
+
+        System.out.println("-".repeat(100));
+        for (var type : CreatureType.values()) {
+            System.out.println(type.getEmoji() + ": " + CreatureConfig.Creature.get(type, CreatureField.KILL_FOX_CHANCE));
+        }
     }
 }
 
 //todo:
 // автоматическое заполнение локации животными при создании локации.
-// добавить в enum все типы животных и их title ->
-// - разблокировать задачу на сайте JavaRush
 // прочитать CQRS паттерн
 // ReentrantLock на Location, способ синхронизации
 // В service можно использовать Worker

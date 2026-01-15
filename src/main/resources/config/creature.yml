@@ -4,78 +4,334 @@ creature:
     max_on_location: 20
     speed: 4
     saturation: 60
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   deer:
     weight: 300
     max_on_location: 20
     speed: 4
     saturation: 50
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   rabbit:
     weight: 2
     max_on_location: 150
     speed: 2
     saturation: 0.45
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   mouse:
     weight: 0.05
     max_on_location: 500
     speed: 1
     saturation: 0.01
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 90
+    kill_plant_chance: 100
   goat:
     weight: 60
     max_on_location: 140
     speed: 3
     saturation: 10
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   sheep:
     weight: 70
     max_on_location: 140
     speed: 3
     saturation: 15
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   boar:
     weight: 400
     max_on_location: 50
     speed: 2
     saturation: 50
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 50
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 90
+    kill_plant_chance: 100
   buffalo:
     weight: 700
     max_on_location: 10
     speed: 3
     saturation: 100
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   duck:
     weight: 1
     max_on_location: 200
     speed: 4
     saturation: 0.15
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 90
+    kill_plant_chance: 100
   caterpillar:
     weight: 0.01
     max_on_location: 1000
     speed: 0
     saturation: 0
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 100
   plant:
     weight: 1
     max_on_location: 200
     speed: 0
     saturation: 0
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 0
+    kill_mouse_chance: 0
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 0
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 0
   wolf:
     weight: 50
     max_on_location: 30
     speed: 3
     saturation: 8
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 10
+    kill_deer_chance: 15
+    kill_rabbit_chance: 60
+    kill_mouse_chance: 80
+    kill_goat_chance: 60
+    kill_sheep_chance: 70
+    kill_boar_chance: 15
+    kill_buffalo_chance: 10
+    kill_duck_chance: 40
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 0
   boa_constrictor:
     weight: 15
     max_on_location: 30
     speed: 1
     saturation: 3
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 15
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 20
+    kill_mouse_chance: 40
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 10
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 0
   fox:
     weight: 8
     max_on_location: 30
     speed: 2
     saturation: 2
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 70
+    kill_mouse_chance: 90
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 60
+    kill_caterpillar_chance: 40
+    kill_plant_chance: 0
   bear:
     weight: 500
     max_on_location: 5
     speed: 2
     saturation: 80
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 80
+    kill_fox_chance: 0
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 40
+    kill_deer_chance: 80
+    kill_rabbit_chance: 80
+    kill_mouse_chance: 90
+    kill_goat_chance: 70
+    kill_sheep_chance: 70
+    kill_boar_chance: 50
+    kill_buffalo_chance: 20
+    kill_duck_chance: 10
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 0
   eagle:
     weight: 6
     max_on_location: 20
     speed: 3
     saturation: 1
+    kill_wolf_chance: 0
+    kill_boa_constrictor_chance: 0
+    kill_fox_chance: 10
+    kill_bear_chance: 0
+    kill_eagle_chance: 0
+    kill_horse_chance: 0
+    kill_deer_chance: 0
+    kill_rabbit_chance: 90
+    kill_mouse_chance: 90
+    kill_goat_chance: 0
+    kill_sheep_chance: 0
+    kill_boar_chance: 0
+    kill_buffalo_chance: 0
+    kill_duck_chance: 80
+    kill_caterpillar_chance: 0
+    kill_plant_chance: 0
