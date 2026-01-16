@@ -1,11 +1,17 @@
 package entity.predator;
 
+import config.list.CreatureConfig;
+import entity.CreatureField;
 import entity.CreatureType;
 import entity.island.Location;
 
 public final class BoaConstrictor extends Predator {
 
     public BoaConstrictor(Location location) {
-        super(999, location, CreatureType.BOA_CONSTRICTOR);
+        super(CreatureConfig.Creature.get(CreatureType.BOA_CONSTRICTOR, CreatureField.WEIGHT).doubleValue(),
+                location,
+                CreatureConfig.Creature.get(CreatureType.BOA_CONSTRICTOR, CreatureField.SATURATION).doubleValue(),
+                CreatureType.BOA_CONSTRICTOR
+        );
     }
 }

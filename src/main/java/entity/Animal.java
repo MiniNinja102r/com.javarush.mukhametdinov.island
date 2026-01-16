@@ -2,17 +2,14 @@ package entity;
 
 import config.list.CreatureConfig;
 import entity.island.Location;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import repository.CreatureFactory;
 import util.Random;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 public abstract class Animal implements Creature, Moveable, Reproducible {

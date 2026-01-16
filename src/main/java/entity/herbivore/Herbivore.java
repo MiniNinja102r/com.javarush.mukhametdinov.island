@@ -6,7 +6,7 @@ import entity.island.Location;
 
 public class Herbivore extends Animal {
 
-    public Herbivore(double weight, Location location, CreatureType type) {
-        super(weight, location, type);
+    public Herbivore(double weight, Location location, double saturation, CreatureType type) {
+        super(weight, location, saturation, type);
     }
 }
