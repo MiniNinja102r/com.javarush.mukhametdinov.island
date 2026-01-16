@@ -16,7 +16,7 @@ public final class CreatureTask {
 
     public void run() {
         if (creature instanceof Animal a) {
-            if (a.eat())
+            //if (a.eat())
         } else {
             CreatureFactory.createCreature(CreatureType.PLANT, creature.location());
         }

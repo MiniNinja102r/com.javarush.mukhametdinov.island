@@ -1,6 +1,8 @@
 package entity.island;
 
+import config.list.CreatureConfig;
 import entity.Creature;
+import entity.CreatureField;
 import entity.CreatureType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,8 +10,8 @@ import lombok.experimental.FieldDefaults;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 
 @RequiredArgsConstructor
@@ -40,5 +42,20 @@ public final class Location {
                 sum.addAndGet(creatures.get(cr));
         });
         return sum.get();
+    }
+
+    public Optional<Creature> findVictimFor(CreatureType type) {
+        for (var creature : creatures.keySet()) {
+            CreatureType otherType = creature.type();
+
+            final double killChance = CreatureConfig.Creature
+                    .get(type, CreatureField.getKillChanceField(otherType))
+                    .doubleValue();
+
+            if (killChance > 0) {
+                return Optional.of(creature);
+            }
+        }
+        return Optional.empty();
     }
 }

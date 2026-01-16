@@ -1,11 +1,17 @@
 import config.Config;
 import config.list.CreatureConfig;
 import config.list.IslandConfig;
+import entity.Creature;
 import entity.CreatureField;
 import entity.CreatureType;
+import entity.Plant;
 import entity.island.Island;
 import entity.island.Location;
+import entity.predator.Bear;
+import entity.predator.Wolf;
 import repository.CreatureFactory;
+
+import java.util.Map;
 
 public final class Launcher {
 
@@ -15,6 +21,18 @@ public final class Launcher {
         final Location[] locations = loadLocations();
         Island.initialize(locations);
         loadCreatures(locations);
+
+        broadcastPopulation(locations);
+
+        Creature creature1 = CreatureFactory.createCreature(CreatureType.WOLF);
+        Wolf wolf = (Wolf) creature1;
+        wolf.eat(locations[0]);
+
+        System.out.println("-".repeat(100));
+
+        Creature creature2 = CreatureFactory.createCreature(CreatureType.BEAR);
+        Bear bear = (Bear) creature2;
+        bear.eat(locations[0]);
     }
 
     private static Location[] loadLocations() {
@@ -39,5 +57,21 @@ public final class Launcher {
                 }
             }
         }
+    }
+
+    //TEST
+    private static void broadcastPopulation(Location[] locations) {
+        for (Location location : locations) {
+            final Map<Creature, Integer> creatures = location.getCreatures();
+            for (CreatureType type : CreatureType.values()) {
+                int count = 0;
+                for (var entry : creatures.entrySet()) {
+                    if (entry.getKey().type() == type)
+                        count += entry.getValue();
+                }
+                System.out.printf("%s: %d, ", type.getEmoji(), count);
+            }
+        }
+        System.out.printf("%n");
     }
 }

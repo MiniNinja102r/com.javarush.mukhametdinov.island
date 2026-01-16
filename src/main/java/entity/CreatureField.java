@@ -4,9 +4,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.java.Log;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Log
 public enum CreatureField {
     WEIGHT("weight"),
     MAX_ON_LOCATION("max_on_location"),
@@ -33,4 +35,14 @@ public enum CreatureField {
 
     @Getter
     final String configName;
+
+    public static CreatureField getKillChanceField(CreatureType type) {
+        final String fieldName = String.format("KILL_%s_CHANCE", type.toString());
+        try {
+            return CreatureField.valueOf(fieldName);
+        } catch (IllegalArgumentException e) {
+            log.warning("Не удалось получить шанс убийства, неизвестный параметр: " + fieldName);
+        }
+        return null;
+    }
 }
