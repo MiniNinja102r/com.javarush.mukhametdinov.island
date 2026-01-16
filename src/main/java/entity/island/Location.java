@@ -1,12 +1,15 @@
 package entity.island;
 
 import entity.Creature;
+import entity.CreatureType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 
 @RequiredArgsConstructor
@@ -28,5 +31,14 @@ public final class Location {
 
     public void addCreature(Creature creature) {
         this.creatures.merge(creature, 1, Integer::sum);
+    }
+
+    public int getCreatureCount(CreatureType type) {
+        final AtomicInteger sum = new AtomicInteger();
+        getCreatures().forEach((cr, a) -> {
+            if (cr.type() == type)
+                sum.addAndGet(creatures.get(cr));
+        });
+        return sum.get();
     }
 }

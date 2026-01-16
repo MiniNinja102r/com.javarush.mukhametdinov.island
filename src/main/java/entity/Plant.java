@@ -1,5 +1,6 @@
 package entity;
 
+import config.list.CreatureConfig;
 import entity.island.Location;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ public final class Plant implements Creature {
 
     @Override
     public double weight() {
-        return 1; // ВЗЯТЬ ИЗ КОНФИГА
+        return CreatureConfig.Creature.get(type(), CreatureField.WEIGHT).doubleValue();
     }
 
     @Override

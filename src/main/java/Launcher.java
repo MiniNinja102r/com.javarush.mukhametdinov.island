@@ -12,7 +12,9 @@ public final class Launcher {
     public static void main(String[] args) {
         Config.loadAll();
 
-        Island.initialize(loadLocations());
+        final Location[] locations = loadLocations();
+        Island.initialize(locations);
+        loadCreatures(locations);
     }
 
     private static Location[] loadLocations() {
@@ -22,17 +24,20 @@ public final class Launcher {
             for (int j = 1; j <= IslandConfig.Island.Y_SIZE; j++) {
                 var loc = new Location(i, j);
                 locations[it] = loc;
-
-                for (var type : CreatureType.values()) {
-                    int initCount = (CreatureConfig.Creature.get(type, CreatureField.INITIAL_COUNT)).intValue();
-                    for (int k = 0; k < initCount; k++) {
-                        CreatureFactory.createCreature(type, loc);
-                    }
-                }
-
                 it++;
             }
         }
         return locations;
+    }
+
+    private static void loadCreatures(Location[] locations) {
+        for (var loc : locations) {
+            for (var type : CreatureType.values()) {
+                int initCount = (CreatureConfig.Creature.get(type, CreatureField.INITIAL_COUNT)).intValue();
+                for (int k = 0; k < initCount; k++) {
+                    CreatureFactory.createCreature(type, loc);
+                }
+            }
+        }
     }
 }

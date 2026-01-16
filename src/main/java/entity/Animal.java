@@ -1,11 +1,13 @@
 package entity;
 
+import config.list.CreatureConfig;
 import entity.island.Location;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import repository.CreatureFactory;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -33,6 +35,15 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void reproduce() {
+        location.getLock().lock();
+        try {
+            if (location.getCreatureCount(type) >= CreatureConfig.Creature.get(type, CreatureField.MAX_ON_LOCATION).intValue())
+                return;
+
+            CreatureFactory.createCreature(type, location);
+        } finally {
+            location.getLock().unlock();
+        }
     }
 
     @Override
@@ -46,7 +57,13 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void die(DeadReason reason) {
+        location.getLock().lock();
+        try {
+            location.
+        } finally {
+            location.getLock().unlock();
+        }
     }
 
-    public abstract void eat(Eatable e);
+    public abstract boolean eat(Location location);
 }
