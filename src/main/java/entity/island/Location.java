@@ -7,14 +7,9 @@ import entity.CreatureType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EqualsAndHashCode
 @ToString
@@ -22,38 +17,47 @@ public final class Location {
 
     final int x;
     final int y;
-    final Map<Creature, Integer> creatures = new HashMap<>();
+    final Map<CreatureType, List<Creature>> creatures = new EnumMap<>(CreatureType.class);
+
+    public Location(int x, int y) {
+        this.x = x;
+        this.y = y;
+        for (var type : CreatureType.values()) {
+            creatures.put(type, new ArrayList<>());
+        }
+    }
 
     @Getter
     final ReentrantLock lock = new ReentrantLock();
 
-    public Map<Creature, Integer> getCreatures() {
+    public Map<CreatureType, List<Creature>> getCreatures() {
         return Collections.unmodifiableMap(creatures);
     }
 
     public void addCreature(Creature creature) {
-        this.creatures.merge(creature, 1, Integer::sum);
+        this.creatures.get(creature.type()).add(creature);
+    }
+
+    public void removeCreature(Creature creature) {
+        creatures.get(creature.type()).remove(creature);
     }
 
     public int getCreatureCount(CreatureType type) {
-        final AtomicInteger sum = new AtomicInteger();
-        getCreatures().forEach((cr, a) -> {
-            if (cr.type() == type)
-                sum.addAndGet(creatures.get(cr));
-        });
-        return sum.get();
+        return creatures.get(type).size();
     }
 
-    public Optional<Creature> findVictimFor(CreatureType type) {
-        for (var creature : creatures.keySet()) {
-            CreatureType otherType = creature.type();
+    public Optional<Creature> findVictimFor(CreatureType predatorType) {
+        for (var victimType : CreatureType.values()) {
+            if (getCreatureCount(victimType) <= 0)
+                continue;
 
             final double killChance = CreatureConfig.Creature
-                    .get(type, CreatureField.getKillChanceField(otherType))
+                    .get(predatorType, CreatureField.getKillChanceField(victimType))
                     .doubleValue();
 
             if (killChance > 0) {
-                return Optional.of(creature);
+                List<Creature> victims = creatures.get(victimType);
+                return Optional.of(victims.getFirst());
             }
         }
         return Optional.empty();

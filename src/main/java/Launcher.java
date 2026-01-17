@@ -4,14 +4,11 @@ import config.list.IslandConfig;
 import entity.Creature;
 import entity.CreatureField;
 import entity.CreatureType;
-import entity.Plant;
 import entity.island.Island;
 import entity.island.Location;
 import entity.predator.Bear;
 import entity.predator.Wolf;
 import repository.CreatureFactory;
-
-import java.util.Map;
 
 public final class Launcher {
 
@@ -33,6 +30,8 @@ public final class Launcher {
         Creature creature2 = CreatureFactory.createCreature(CreatureType.BEAR);
         Bear bear = (Bear) creature2;
         bear.eat(locations[0]);
+
+        broadcastPopulation(locations);
     }
 
     private static Location[] loadLocations() {
@@ -62,16 +61,10 @@ public final class Launcher {
     //TEST
     private static void broadcastPopulation(Location[] locations) {
         for (Location location : locations) {
-            final Map<Creature, Integer> creatures = location.getCreatures();
             for (CreatureType type : CreatureType.values()) {
-                int count = 0;
-                for (var entry : creatures.entrySet()) {
-                    if (entry.getKey().type() == type)
-                        count += entry.getValue();
-                }
-                System.out.printf("%s: %d, ", type.getEmoji(), count);
+                System.out.printf("%s: %d, ", type.getEmoji(), location.getCreatureCount(type));
             }
+            System.out.println();
         }
-        System.out.printf("%n");
     }
 }

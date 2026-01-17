@@ -62,33 +62,33 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
     public void die(DeadReason reason) {
         location.getLock().lock();
         try {
-            //location.
+            location.removeCreature(this);
         } finally {
             location.getLock().unlock();
         }
     }
 
     public boolean eat(Location location) {
-        boolean isEat = false;
         location.getLock().lock();
         try {
             Optional<Creature> optionalVictim = location.findVictimFor(this.type);
-            if (optionalVictim.isPresent()) {
-                final Creature victim = optionalVictim.get();
-                final double killChance = CreatureConfig.Creature
-                        .get(type, CreatureField.getKillChanceField(victim.type()))
-                        .doubleValue() / 100;
+            if (optionalVictim.isEmpty())
+                return false;
 
-                if (Random.random.nextDouble() < killChance) {
-                    victim.die(DeadReason.KILLED);
-                    increaseSatiety(victim.weight());
-                    isEat = true;
-                }
+            final Creature victim = optionalVictim.get();
+            final double killChance = CreatureConfig.Creature
+                    .get(this.type, CreatureField.getKillChanceField(victim.type()))
+                    .doubleValue() / 100;
+
+            if (Random.random.nextDouble() < killChance) {
+                increaseSatiety(victim.weight());
+                victim.die(DeadReason.KILLED);
+                return true;
             }
         } finally {
             location.getLock().unlock();
         }
-        return isEat;
+        return false;
     }
 
     private void increaseSatiety(double increaseWeight) {
