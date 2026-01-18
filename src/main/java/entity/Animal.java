@@ -88,13 +88,11 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     public void decreaseSatiety() {
         final double decreaseWeight = CreatureConfig.Creature
-                .get(this.type, CreatureField.SPEED)
+                .get(this.type, CreatureField.HUNGER_PER_TICK)
                 .doubleValue();
 
         this.saturation = Math.max(0, this.saturation - decreaseWeight);
-        if (this.saturation <= 0) {
+        if (this.saturation <= 0)
             this.die(DeadReason.HUNGER);
-            System.out.println("УМЕР ОТ ГОЛОДА");
-        }
     }
 }
