@@ -56,6 +56,8 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void move(Location location) {
+        System.out.println("МЫ ДВИЖЕМСЯ");
+        //TODO : MOVE
     }
 
     @Override
@@ -80,7 +82,7 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
                     .get(this.type, CreatureField.getKillChanceField(victim.type()))
                     .doubleValue() / 100;
 
-            if (Random.random.nextDouble() < killChance) {
+            if (Random.getRandom().nextDouble() < killChance) {
                 increaseSatiety(victim.weight());
                 victim.die(DeadReason.KILLED);
                 return true;

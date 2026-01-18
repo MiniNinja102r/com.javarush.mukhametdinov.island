@@ -2,8 +2,12 @@ package util;
 
 import lombok.experimental.UtilityClass;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @UtilityClass
 public final class Random {
 
-    public static final java.util.Random random = new java.util.Random();
+    public static ThreadLocalRandom getRandom() {
+        return ThreadLocalRandom.current();
+    }
 }

@@ -40,6 +40,7 @@ public final class IslandConfig extends Config implements Configurable {
             Island.X_SIZE = Configs.getInteger(config, "x_size", 1);
             Island.Y_SIZE = Configs.getInteger(config, "y_size", 1);
             Island.MAX_LOCATIONS_ON_ISLAND = Island.X_SIZE * Island.Y_SIZE;
+            Island.ANIMAL_MOVE_CHANCE = Configs.getDouble(config, "animal_move_chance", 50);
         }
     }
 
@@ -48,5 +49,6 @@ public final class IslandConfig extends Config implements Configurable {
         public static Integer X_SIZE;
         public static Integer Y_SIZE;
         public static Integer MAX_LOCATIONS_ON_ISLAND;
+        public static Double ANIMAL_MOVE_CHANCE;
     }
 }

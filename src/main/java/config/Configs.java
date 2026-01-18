@@ -22,6 +22,13 @@ public final class Configs {
         else return def;
     }
 
+    public static double getDouble(Map<String, Object> map, String key, double def) {
+        Object value = map.get(key);
+        if (value instanceof Number num)
+            return num.doubleValue();
+        else return def;
+    }
+
     public static TimeUnit getTimeUnit(Map<String, Object> map, String key, TimeUnit def) {
         Object value = map.get(key);
         if (!(value instanceof String s))

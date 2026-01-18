@@ -1,14 +1,12 @@
 import config.Config;
 import config.list.CreatureConfig;
 import config.list.IslandConfig;
-import entity.Creature;
 import entity.CreatureField;
 import entity.CreatureType;
 import entity.island.Island;
 import entity.island.Location;
-import entity.predator.Bear;
-import entity.predator.Wolf;
 import repository.CreatureFactory;
+import service.SimulationWorker;
 
 public final class Launcher {
 
@@ -19,19 +17,8 @@ public final class Launcher {
         Island.initialize(locations);
         loadCreatures(locations);
 
-        broadcastPopulation(locations);
-
-        Creature creature1 = CreatureFactory.createCreature(CreatureType.WOLF);
-        Wolf wolf = (Wolf) creature1;
-        wolf.eat(locations[0]);
-
-        System.out.println("-".repeat(100));
-
-        Creature creature2 = CreatureFactory.createCreature(CreatureType.BEAR);
-        Bear bear = (Bear) creature2;
-        bear.eat(locations[0]);
-
-        broadcastPopulation(locations);
+        SimulationWorker simulationWorker = new SimulationWorker();
+        simulationWorker.start();
     }
 
     private static Location[] loadLocations() {
@@ -55,16 +42,6 @@ public final class Launcher {
                     CreatureFactory.createCreature(type, loc);
                 }
             }
-        }
-    }
-
-    //TEST
-    private static void broadcastPopulation(Location[] locations) {
-        for (Location location : locations) {
-            for (CreatureType type : CreatureType.values()) {
-                System.out.printf("%s: %d, ", type.getEmoji(), location.getCreatureCount(type));
-            }
-            System.out.println();
         }
     }
 }
