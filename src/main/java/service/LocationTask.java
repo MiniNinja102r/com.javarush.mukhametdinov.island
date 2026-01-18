@@ -11,6 +11,10 @@ import lombok.experimental.FieldDefaults;
 import repository.CreatureFactory;
 import util.Random;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class LocationTask implements Runnable {
@@ -20,10 +24,15 @@ public final class LocationTask implements Runnable {
     public void run() {
         location.getLock().lock();
         try {
-            for (var type : CreatureType.values()) {
-                for (var creature : location.getCreatures().get(type)) {
-                    tickCreature(creature);
-                }
+            List<Creature> copy = new ArrayList<>(location.getCreatures()
+                    .values()
+                    .stream()
+                    .flatMap(List::stream)
+                    .toList());
+            Collections.shuffle(copy);
+
+            for (var creature : copy) {
+                tickCreature(creature);
             }
         } finally {
             location.getLock().unlock();

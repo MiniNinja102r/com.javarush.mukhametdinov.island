@@ -38,9 +38,6 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void reproduce() {
-        if (location.getCreatureCount(type) >= CreatureConfig.Creature.get(type, CreatureField.MAX_ON_LOCATION).intValue())
-            return;
-
         CreatureFactory.createCreature(type, location);
     }
 
@@ -95,7 +92,9 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
                 .doubleValue();
 
         this.saturation = Math.max(0, this.saturation - decreaseWeight);
-        if (this.saturation <= 0)
+        if (this.saturation <= 0) {
             this.die(DeadReason.HUNGER);
+            System.out.println("УМЕР ОТ ГОЛОДА");
+        }
     }
 }
