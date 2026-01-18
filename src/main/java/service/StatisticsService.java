@@ -14,10 +14,16 @@ public final class StatisticsService {
     public void broadcastPopulation() {
         final Location[] locations = island.getLocations();
         for (Location location : locations) {
-            for (CreatureType type : CreatureType.values()) {
-                System.out.printf("%s: %d, ", type.getEmoji(), location.getCreatureCount(type));
+            location.getLock().lock();
+            try {
+                for (CreatureType type : CreatureType.values()) {
+                    System.out.printf("%s: %d, ", type.getEmoji(), location.getCreatureCount(type));
+                }
+
+                System.out.println();
+            } finally {
+                location.getLock().unlock();
             }
-            System.out.println();
         }
     }
 }

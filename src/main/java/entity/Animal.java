@@ -38,15 +38,10 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void reproduce() {
-        location.getLock().lock();
-        try {
-            if (location.getCreatureCount(type) >= CreatureConfig.Creature.get(type, CreatureField.MAX_ON_LOCATION).intValue())
-                return;
+        if (location.getCreatureCount(type) >= CreatureConfig.Creature.get(type, CreatureField.MAX_ON_LOCATION).intValue())
+            return;
 
-            CreatureFactory.createCreature(type, location);
-        } finally {
-            location.getLock().unlock();
-        }
+        CreatureFactory.createCreature(type, location);
     }
 
     @Override
@@ -56,22 +51,12 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void move(Location location) {
-        location.getLock().lock();
-        try {
-            //
-        } finally {
-            location.getLock().lock();
-        }
+        //
     }
 
     @Override
     public void die(DeadReason reason) {
-        location.getLock().lock();
-        try {
-            location.removeCreature(this);
-        } finally {
-            location.getLock().unlock();
-        }
+        location.removeCreature(this);
     }
 
     private Location getMoveLocation() {
@@ -81,25 +66,21 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
     }
 
     public boolean eat(Location location) {
-        location.getLock().lock();
-        try {
-            Optional<Creature> optionalVictim = location.findVictimFor(this.type);
-            if (optionalVictim.isEmpty())
-                return false;
+        Optional<Creature> optionalVictim = location.findVictimFor(this.type);
+        if (optionalVictim.isEmpty())
+            return false;
 
-            final Creature victim = optionalVictim.get();
-            final double killChance = CreatureConfig.Creature
-                    .get(this.type, CreatureField.getKillChanceField(victim.type()))
-                    .doubleValue() / 100;
+        final Creature victim = optionalVictim.get();
+        final double killChance = CreatureConfig.Creature
+                .get(this.type, CreatureField.getKillChanceField(victim.type()))
+                .doubleValue() / 100;
 
-            if (Random.getRandom().nextDouble() < killChance) {
-                increaseSatiety(victim.weight());
-                victim.die(DeadReason.KILLED);
-                return true;
-            }
-        } finally {
-            location.getLock().unlock();
+        if (Random.getRandom().nextDouble() < killChance) {
+            increaseSatiety(victim.weight());
+            victim.die(DeadReason.KILLED);
+            return true;
         }
+
         return false;
     }
 

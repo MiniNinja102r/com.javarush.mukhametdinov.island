@@ -6,6 +6,7 @@ import entity.island.Location;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.java.Log;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -14,6 +15,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Log
 public final class SimulationWorker  {
 
     final StatisticsService statistics;
@@ -49,7 +51,8 @@ public final class SimulationWorker  {
         try {
             cdl.await();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            log.severe("Произошла ошибка в работе тикера: " + e);
         }
 
         statistics.broadcastPopulation();

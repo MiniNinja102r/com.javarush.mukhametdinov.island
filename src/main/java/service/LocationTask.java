@@ -34,7 +34,10 @@ public final class LocationTask implements Runnable {
         if (creature instanceof Animal a) {
             if (a.eat(a.location())) {
                 a.reproduce();
+            } else {
+                a.decreaseSatiety();
             }
+
             tryMove(a);
         } else {
             CreatureFactory.createCreature(CreatureType.PLANT, creature.location());
