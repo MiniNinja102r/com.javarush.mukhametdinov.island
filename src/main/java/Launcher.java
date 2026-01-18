@@ -7,6 +7,7 @@ import entity.island.Island;
 import entity.island.Location;
 import repository.CreatureFactory;
 import service.SimulationWorker;
+import service.StatisticsService;
 
 public final class Launcher {
 
@@ -17,7 +18,8 @@ public final class Launcher {
         Island.initialize(locations);
         loadCreatures(locations);
 
-        SimulationWorker simulationWorker = new SimulationWorker();
+        final StatisticsService statistics = new StatisticsService();
+        final SimulationWorker simulationWorker = new SimulationWorker(statistics);
         simulationWorker.start();
     }
 

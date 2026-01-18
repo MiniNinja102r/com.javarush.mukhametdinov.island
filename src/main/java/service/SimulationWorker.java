@@ -4,15 +4,19 @@ import config.list.SchedulerConfig;
 import entity.island.Island;
 import entity.island.Location;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class SimulationWorker  {
 
+    final StatisticsService statistics;
     final Island island = Island.getInstance();
 
     final ScheduledExecutorService ticker = Executors.newSingleThreadScheduledExecutor();
@@ -29,8 +33,25 @@ public final class SimulationWorker  {
     }
 
     private void tick() {
-        for (Location loc : island.getLocations()) {
-            workers.submit(new LocationTask(loc));
+        final Location[] locations = island.getLocations();
+        final CountDownLatch cdl = new CountDownLatch(locations.length);
+
+        for (Location loc : locations) {
+            workers.submit(() -> {
+                try {
+                    new LocationTask(loc).run();
+                } finally {
+                    cdl.countDown();
+                }
+            });
         }
+
+        try {
+            cdl.await();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        statistics.broadcastPopulation();
     }
 }
