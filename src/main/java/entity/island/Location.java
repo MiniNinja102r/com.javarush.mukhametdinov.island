@@ -35,7 +35,11 @@ public final class Location {
     }
 
     public void addCreature(Creature creature) {
-        this.creatures.get(creature.type()).add(creature);
+        final var type = creature.type();
+        if (getCreatureCount(type) >= CreatureConfig.Creature.get(type, CreatureField.MAX_ON_LOCATION).intValue())
+            return;
+
+        this.creatures.get(type).add(creature);
     }
 
     public void removeCreature(Creature creature) {
