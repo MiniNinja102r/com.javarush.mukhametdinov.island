@@ -56,8 +56,12 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
 
     @Override
     public void move(Location location) {
-        System.out.println("МЫ ДВИЖЕМСЯ");
-        //TODO : MOVE
+        location.getLock().lock();
+        try {
+            //
+        } finally {
+            location.getLock().lock();
+        }
     }
 
     @Override
@@ -68,6 +72,12 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
         } finally {
             location.getLock().unlock();
         }
+    }
+
+    private Location getMoveLocation() {
+        //
+
+        return null;
     }
 
     public boolean eat(Location location) {
@@ -93,8 +103,18 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
         return false;
     }
 
-    private void increaseSatiety(double increaseWeight) {
+    public void increaseSatiety(double increaseWeight) {
         final var maxSaturation = CreatureConfig.Creature.get(this.type, CreatureField.SATURATION).doubleValue();
-        this.saturation = Math.max(this.saturation + increaseWeight, maxSaturation);
+        this.saturation = Math.min(this.saturation + increaseWeight, maxSaturation);
+    }
+
+    public void decreaseSatiety() {
+        final double decreaseWeight = CreatureConfig.Creature
+                .get(this.type, CreatureField.SPEED)
+                .doubleValue();
+
+        this.saturation = Math.max(0, this.saturation - decreaseWeight);
+        if (this.saturation <= 0)
+            this.die(DeadReason.HUNGER);
     }
 }
