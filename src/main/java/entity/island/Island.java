@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-
-import java.util.Random;
+import util.Random;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -17,7 +16,6 @@ public final class Island {
     final Location[] locations;
 
     private static Island instance;
-    private static final Random random = new Random();
 
     public static void initialize(Location[] locations) {
         if (instance == null)
@@ -33,7 +31,7 @@ public final class Island {
     }
 
     public Location getRandomLocation() {
-        int i = random.nextInt(locations.length);
+        int i = Random.getRandom().nextInt(locations.length);
         return locations[i];
     }
 }

@@ -1,4 +1,4 @@
 island:
-  x_size: 1
-  y_size: 1
+  x_size: 100
+  y_size: 20
   animal_move_chance: 50
