@@ -6,6 +6,9 @@ import entity.island.Location;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public final class StatisticsService {
 
@@ -13,17 +16,22 @@ public final class StatisticsService {
 
     public void broadcastPopulation() {
         final Location[] locations = island.getLocations();
-        for (Location location : locations) {
-            location.getLock().lock();
-            try {
-                for (CreatureType type : CreatureType.values()) {
-                    System.out.printf("%s: %d, ", type.getEmoji(), location.getCreatureCount(type));
-                }
+        final Map<CreatureType, Integer> creatures = new EnumMap<>(CreatureType.class);
 
-                System.out.println();
+        for (var loc : locations) {
+            loc.getLock().lock();
+            try {
+                for (var type : CreatureType.values()) {
+                    creatures.merge(type, loc.getCreatureCount(type), Integer::sum);
+                }
             } finally {
-                location.getLock().unlock();
+                loc.getLock().unlock();
             }
         }
+
+        for (var type : CreatureType.values()) {
+            System.out.printf("%s: %d, ", type.getEmoji(), creatures.get(type));
+        }
+        System.out.println();
     }
 }
