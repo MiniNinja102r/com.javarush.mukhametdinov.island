@@ -4,6 +4,7 @@ import config.list.IslandConfig;
 import entity.Animal;
 import entity.Creature;
 import entity.CreatureType;
+import entity.island.Island;
 import entity.island.Location;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,8 @@ import java.util.List;
 public final class LocationTask implements Runnable {
 
     final Location location;
+
+    final Island island;
 
     public void run() {
         location.getLock().lock();
@@ -56,7 +59,7 @@ public final class LocationTask implements Runnable {
     private void tryMove(Animal animal) {
         final double moveChance = IslandConfig.Island.ANIMAL_MOVE_CHANCE;
         if (Random.getRandom().nextDouble() < moveChance) {
-            animal.move(animal.location());
+            animal.move(animal.location(), island);
         }
     }
 }

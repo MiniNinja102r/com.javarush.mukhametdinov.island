@@ -15,8 +15,12 @@ import java.util.concurrent.locks.ReentrantLock;
 @ToString
 public final class Location {
 
+    @Getter
     final int x;
+
+    @Getter
     final int y;
+
     final Map<CreatureType, List<Creature>> creatures = new EnumMap<>(CreatureType.class);
 
     public Location(int x, int y) {
@@ -34,12 +38,13 @@ public final class Location {
         return Collections.unmodifiableMap(creatures);
     }
 
-    public void addCreature(Creature creature) {
+    public boolean addCreature(Creature creature) {
         final var type = creature.type();
         if (getCreatureCount(type) >= CreatureConfig.Creature.get(type, CreatureField.MAX_ON_LOCATION).intValue())
-            return;
+            return false;
 
         this.creatures.get(type).add(creature);
+        return true;
     }
 
     public void removeCreature(Creature creature) {

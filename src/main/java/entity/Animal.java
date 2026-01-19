@@ -1,12 +1,16 @@
 package entity;
 
 import config.list.CreatureConfig;
+import config.list.IslandConfig;
+import entity.island.Island;
 import entity.island.Location;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import repository.CreatureFactory;
 import util.Random;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -47,8 +51,15 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
     }
 
     @Override
-    public void move(Location location) {
-        //
+    public void move(Location location, Island island) {
+        final Location moveLoc = chooseMoveLocation(island);
+        final Location previousLoc = this.location;
+
+        if (moveLoc == null) return;
+
+        if (moveLoc.addCreature(this)) {
+            previousLoc.removeCreature(this);
+        }
     }
 
     @Override
@@ -56,10 +67,31 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
         location.removeCreature(this);
     }
 
-    private Location getMoveLocation() {
-        //
+    private Location chooseMoveLocation(Island island) {
+        final int x = location.getX();
+        final int y = location.getY();
 
-        return null;
+        List<Location> variants = new ArrayList<>(4);
+        final int speed = CreatureConfig.Creature.get(this.type, CreatureField.SPEED).intValue();
+
+        addIfValid(island, variants, x + speed, y);
+        addIfValid(island, variants, x - speed, y);
+        addIfValid(island, variants, x, y + speed);
+        addIfValid(island, variants, x, y - speed);
+        if (variants.isEmpty())
+            return null;
+
+        return variants.get(Random.getRandom().nextInt(variants.size()));
+    }
+
+    private void addIfValid(Island island, List<Location> list, int x, int y) {
+        if (x < 1 || y < 1 || x > IslandConfig.Island.X_SIZE || y > IslandConfig.Island.Y_SIZE)
+            return;
+
+        Location loc = island.getLocation(x, y);
+        if (loc != null) {
+            list.add(loc);
+        }
     }
 
     public boolean eat(Location location) {

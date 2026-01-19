@@ -14,10 +14,6 @@ public final class CreatureFactory {
 
     private static final Island island = Island.getInstance();
 
-    public static Creature createCreature(CreatureType type) {
-        return createCreature(type, island.getRandomLocation());
-    }
-
     public static Creature createCreature(CreatureType type, Location loc) {
         final Creature creature = getCreature(type, loc);
         loc.addCreature(creature);

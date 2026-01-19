@@ -41,7 +41,7 @@ public final class SimulationWorker  {
         for (Location loc : locations) {
             workers.submit(() -> {
                 try {
-                    new LocationTask(loc).run();
+                    new LocationTask(loc, island).run();
                 } finally {
                     cdl.countDown();
                 }

@@ -280,7 +280,7 @@ creature:
     max_on_location: 30
     speed: 1
     saturation: 3
-    hunger_per_tick: 0.2
+    hunger_per_tick: 0.15
     initial_count: 20
     kill_wolf_chance: 0
     kill_boa_constrictor_chance: 0
