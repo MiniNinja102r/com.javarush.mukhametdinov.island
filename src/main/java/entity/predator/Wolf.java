@@ -1,6 +1,6 @@
 package entity.predator;
 
-import config.list.CreatureConfig;
+import config.values.CreatureConfig;
 import entity.CreatureField;
 import entity.CreatureType;
 import entity.island.Location;

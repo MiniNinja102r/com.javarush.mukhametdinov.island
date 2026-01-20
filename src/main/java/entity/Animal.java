@@ -1,7 +1,7 @@
 package entity;
 
-import config.list.CreatureConfig;
-import config.list.IslandConfig;
+import config.values.CreatureConfig;
+import config.values.IslandConfig;
 import entity.island.Island;
 import entity.island.Location;
 import lombok.*;
@@ -95,6 +95,9 @@ public abstract class Animal implements Creature, Moveable, Reproducible {
     }
 
     public boolean eat(Location location) {
+        if (this.saturation == CreatureConfig.Creature.get(this.type, CreatureField.SATURATION).doubleValue())
+            return false;
+
         Optional<Creature> optionalVictim = location.findVictimFor(this.type);
         if (optionalVictim.isEmpty())
             return false;

@@ -1,8 +1,8 @@
-package config.list;
+package config.values;
 
 import config.Config;
 import config.ConfigType;
-import config.Configs;
+import util.ConfigGetter;
 import config.Configurable;
 import exception.ConfigNotFoundException;
 import exception.ConfigReadingException;
@@ -12,9 +12,10 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("unchecked")
-public final class IslandConfig extends Config implements Configurable {
+public final class SchedulerConfig extends Config implements Configurable {
 
     private static Map<String, Object> data;
 
@@ -37,18 +38,18 @@ public final class IslandConfig extends Config implements Configurable {
         if (config == null)
             throw new ConfigReadingException(cType.getRawFileName() + " section not found in config.");
         else {
-            Island.X_SIZE = Configs.getInteger(config, "x_size", 1);
-            Island.Y_SIZE = Configs.getInteger(config, "y_size", 1);
-            Island.MAX_LOCATIONS_ON_ISLAND = Island.X_SIZE * Island.Y_SIZE;
-            Island.ANIMAL_MOVE_CHANCE = Configs.getDouble(config, "animal_move_chance", 50);
+            SchedulerConfig.Scheduler.CORE_POOL_SIZE = ConfigGetter.getInteger(config, "core_pool_size", 2);
+            SchedulerConfig.Scheduler.DELAY = ConfigGetter.getLong(config, "delay", 5);
+            SchedulerConfig.Scheduler.INITIAL_DELAY = ConfigGetter.getLong(config, "initial_delay", 2);
+            SchedulerConfig.Scheduler.TIMEUNIT = ConfigGetter.getTimeUnit(config, "timeunit", TimeUnit.SECONDS);
         }
     }
 
     @UtilityClass
-    public static class Island {
-        public static Integer X_SIZE;
-        public static Integer Y_SIZE;
-        public static Integer MAX_LOCATIONS_ON_ISLAND;
-        public static Double ANIMAL_MOVE_CHANCE;
+    public static class Scheduler {
+        public static Integer CORE_POOL_SIZE;
+        public static Long DELAY;
+        public static Long INITIAL_DELAY;
+        public static TimeUnit TIMEUNIT;
     }
 }

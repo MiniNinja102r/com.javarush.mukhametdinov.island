@@ -1,6 +1,6 @@
 package service;
 
-import config.list.IslandConfig;
+import config.values.IslandConfig;
 import entity.Animal;
 import entity.Creature;
 import entity.CreatureType;

@@ -1,4 +1,4 @@
-package config.list;
+package config.values;
 
 import config.Config;
 import config.ConfigType;

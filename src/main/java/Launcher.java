@@ -1,6 +1,6 @@
 import config.Config;
-import config.list.CreatureConfig;
-import config.list.IslandConfig;
+import config.values.CreatureConfig;
+import config.values.IslandConfig;
 import entity.CreatureField;
 import entity.CreatureType;
 import entity.island.Island;

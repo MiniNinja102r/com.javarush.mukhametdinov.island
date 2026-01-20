@@ -1,6 +1,6 @@
 package entity;
 
-import config.list.CreatureConfig;
+import config.values.CreatureConfig;
 import entity.island.Location;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +24,7 @@ public final class Plant implements Creature {
 
     @Override
     public void die(DeadReason reason) {
+        location.removeCreature(this);
     }
 
     @Override

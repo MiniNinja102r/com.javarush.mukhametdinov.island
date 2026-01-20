@@ -1,8 +1,8 @@
 package config;
 
-import config.list.CreatureConfig;
-import config.list.IslandConfig;
-import config.list.SchedulerConfig;
+import config.values.CreatureConfig;
+import config.values.IslandConfig;
+import config.values.SchedulerConfig;
 
 import java.io.InputStream;
 import java.util.List;

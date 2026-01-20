@@ -1,4 +1,4 @@
-package config;
+package util;
 
 import lombok.experimental.UtilityClass;
 
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @UtilityClass
-public final class Configs {
+public final class ConfigGetter {
 
     public static int getInteger(Map<String, Object> map, String key, int def) {
         Object value = map.get(key);

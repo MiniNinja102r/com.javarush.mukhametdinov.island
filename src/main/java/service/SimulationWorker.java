@@ -1,6 +1,6 @@
 package service;
 
-import config.list.SchedulerConfig;
+import config.values.SchedulerConfig;
 import entity.island.Island;
 import entity.island.Location;
 import lombok.AccessLevel;

@@ -235,7 +235,7 @@ creature:
     speed: 0
     saturation: 0
     hunger_per_tick: 0
-    initial_count: 150
+    initial_count: 180
     kill_wolf_chance: 0
     kill_boa_constrictor_chance: 0
     kill_fox_chance: 0

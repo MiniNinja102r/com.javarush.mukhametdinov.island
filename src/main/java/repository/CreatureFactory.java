@@ -4,15 +4,12 @@ import entity.Creature;
 import entity.CreatureType;
 import entity.Plant;
 import entity.herbivore.*;
-import entity.island.Island;
 import entity.island.Location;
 import entity.predator.*;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public final class CreatureFactory {
-
-    private static final Island island = Island.getInstance();
 
     public static Creature createCreature(CreatureType type, Location loc) {
         final Creature creature = getCreature(type, loc);
